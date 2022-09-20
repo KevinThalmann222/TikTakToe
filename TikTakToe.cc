@@ -5,8 +5,40 @@ using namespace std;
 // Spielfeld mit der groeße 4x4
 char playing_field[4][4] = {{'A', 'B', 'C', 'D'}, {'E', 'F', 'G', 'H'}, {'I', 'J', 'K', 'L'}, {'M', 'N', 'O', 'P'}};
 char get_pos;
-
 char set_char = 'X';
+
+
+char WinningPlayer()
+{
+    // Gamingen Player X
+    if (playing_field[0][0] == 'X' && playing_field[0][1] == 'X' && playing_field[0][2] == 'X' &&
+        playing_field[0][3] == 'X')
+        return 'X';
+    else if (playing_field[1][0] == 'X' && playing_field[1][1] == 'X' && playing_field[1][2] == 'X' &&
+             playing_field[1][3] == 'X')
+        return 'X';
+    else if (playing_field[2][0] == 'X' && playing_field[2][1] == 'X' && playing_field[2][2] == 'X' &&
+             playing_field[3][3] == 'X')
+        return 'X';
+    else if (playing_field[4][0] == 'X' && playing_field[4][1] == 'X' && playing_field[4][2] == 'X' &&
+             playing_field[4][3] == 'X')
+        return 'X';
+    // Gamingen Player Y
+    else if (playing_field[0][0] == 'Y' && playing_field[0][1] == 'Y' && playing_field[0][2] == 'Y' &&
+             playing_field[0][3] == 'Y')
+        return 'Y';
+    else if (playing_field[1][0] == 'Y' && playing_field[1][1] == 'Y' && playing_field[1][2] == 'Y' &&
+             playing_field[1][3] == 'Y')
+        return 'Y';
+    else if (playing_field[2][0] == 'Y' && playing_field[2][1] == 'Y' && playing_field[2][2] == 'Y' &&
+             playing_field[3][3] == 'Y')
+        return 'Y';
+    else if (playing_field[4][0] == 'Y' && playing_field[4][1] == 'Y' && playing_field[4][2] == 'Y' &&
+             playing_field[4][3] == 'Y')
+        return 'Y';
+    else
+        return '/';
+}
 
 void SwitchPlayer()
 {
@@ -31,7 +63,7 @@ void DrawField()
 
 void DrawMove()
 {
-    cout << "Bitte wähle ein Feld aus: ";
+    cout << "Bitte wähle ein Feld aus [Player: " << set_char << "]: ";
     cin >> get_pos;
     switch (get_pos)
     {
@@ -88,15 +120,30 @@ void DrawMove()
 
 int main()
 {
-    system("clear");
-    while (true)
+    bool run = true;
+    while (run)
     {
-        DrawField();
-        DrawMove();
-        SwitchPlayer();
         system("clear");
+        DrawField();
+        if (WinningPlayer() == 'X')
+        {
+            run = false;
+            cout << "----------------------" << endl;
+            cout << "Player X wins the Game" << endl;
+            cout << "----------------------" << endl;
+        }
+        else if (WinningPlayer() == 'Y')
+        {
+            run = false;
+            cout << "----------------------" << endl;
+            cout << "Player Y wins the Game" << endl;
+            cout << "----------------------" << endl;
+        }
+        else
+        {
+            DrawMove();
+            SwitchPlayer();
+        }
     }
-
-
     return 0;
 }
