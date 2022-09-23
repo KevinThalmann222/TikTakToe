@@ -7,7 +7,8 @@ char playing_field[4][4] = {{'A', 'B', 'C', 'D'}, {'E', 'F', 'G', 'H'}, {'I', 'J
 char get_pos;
 char main_player = 'X';
 char other_player = 'Y';
-
+bool used_field = false;
+int num_rounds = 0;
 
 char WinningPlayer()
 {
@@ -70,133 +71,206 @@ void DrawField()
 
 void DrawMove()
 {
-    cout << "Bitte wähle ein Feld aus [Player: " << main_player << "]: ";
-    cin >> get_pos;
+    if (used_field == true)
+    {
+        cout << "-> Das Feld ist besetzt! [Player: " << main_player << "]: ";
+        cin >> get_pos;
+        used_field = false;
+    }
+    else
+    {
+        cout << "Bitte wähle ein Feld aus [Player: " << main_player << "]: ";
+        cin >> get_pos;
+    }
     switch (get_pos)
     {
     case 'a':
-        if (playing_field[0][0] == other_player)
+        if (playing_field[0][0] != 'A')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[0][0] = main_player;
             break;
         }
     case 'b':
-        if (playing_field[0][1] == other_player)
+        if (playing_field[0][1] != 'B')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[0][1] = main_player;
             break;
         }
     case 'c':
-        if (playing_field[0][2] == other_player)
+        if (playing_field[0][2] != 'C')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[0][2] = main_player;
             break;
         }
     case 'd':
-        if (playing_field[0][3] == other_player)
+        if (playing_field[0][3] != 'D')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[0][3] = main_player;
             break;
         }
     case 'e':
-        if (playing_field[1][0] == other_player)
+        if (playing_field[1][0] != 'E')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[1][0] = main_player;
             break;
         }
     case 'f':
-        if (playing_field[1][1] == other_player)
+        if (playing_field[1][1] != 'F')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[1][1] = main_player;
             break;
         }
     case 'g':
-        if (playing_field[1][2] == other_player)
+        if (playing_field[1][2] != 'G')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[1][2] = main_player;
             break;
         }
     case 'h':
-        if (playing_field[1][3] == other_player)
+        if (playing_field[1][3] != 'H')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[1][3] = main_player;
             break;
         }
     case 'i':
-        if (playing_field[2][0] == other_player)
+        if (playing_field[2][0] != 'I')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[2][0] = main_player;
             break;
         }
     case 'j':
-        if (playing_field[2][1] == other_player)
+        if (playing_field[2][1] != 'J')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[2][1] = main_player;
             break;
         }
     case 'k':
-        if (playing_field[2][2] == other_player)
+        if (playing_field[2][2] != 'K')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[2][2] = main_player;
             break;
         }
     case 'l':
-        if (playing_field[2][3] == other_player)
+        if (playing_field[2][3] != 'L')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[2][3] = main_player;
             break;
         }
     case 'm':
-        if (playing_field[3][0] == other_player)
+        if (playing_field[3][0] != 'M')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[3][0] = main_player;
             break;
         }
     case 'n':
-        if (playing_field[3][1] == other_player)
+        if (playing_field[3][1] != 'N')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[3][1] = main_player;
             break;
         }
     case 'o':
-        if (playing_field[3][2] == other_player)
+        if (playing_field[3][2] != 'O')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[3][2] = main_player;
             break;
         }
     case 'p':
-        if (playing_field[3][3] == other_player)
+        if (playing_field[3][3] != 'P')
+        {
+            used_field = true;
+            DrawMove();
             break;
+        }
         else
         {
             playing_field[3][3] = main_player;
@@ -226,10 +300,18 @@ int main()
             cout << "Player Y wins the Game" << endl;
             cout << "----------------------" << endl;
         }
+        else if (WinningPlayer() == '/' && num_rounds == 16)
+        {
+            run = false;
+            cout << "----------------------" << endl;
+            cout << "         DRAW         " << endl;
+            cout << "----------------------" << endl;
+        }
         else
         {
             DrawMove();
             SwitchPlayer();
+            num_rounds++;
         }
     }
     return 0;
