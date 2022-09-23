@@ -5,53 +5,53 @@ using namespace std;
 // Spielfeld mit der groeße 4x4
 char playing_field[4][4] = {{'A', 'B', 'C', 'D'}, {'E', 'F', 'G', 'H'}, {'I', 'J', 'K', 'L'}, {'M', 'N', 'O', 'P'}};
 char get_pos;
-char player01 = 'X';
-char player02 = 'Y';
+char main_player = 'X';
+char other_player = 'Y';
 
 
 char WinningPlayer()
 {
     // Gamingen Player X
-    if (playing_field[0][0] == player01 && playing_field[0][1] == player01 && playing_field[0][2] == player01 &&
-        playing_field[0][3] == player01)
-        return player01;
-    else if (playing_field[1][0] == player01 && playing_field[1][1] == player01 && playing_field[1][2] == player01 &&
-             playing_field[1][3] == player01)
-        return player01;
-    else if (playing_field[2][0] == player01 && playing_field[2][1] == player01 && playing_field[2][2] == player01 &&
-             playing_field[3][3] == player01)
-        return player01;
-    else if (playing_field[4][0] == player01 && playing_field[4][1] == player01 && playing_field[4][2] == player01 &&
-             playing_field[4][3] == player01)
-        return player01;
+    if (playing_field[0][0] == main_player && playing_field[0][1] == main_player &&
+        playing_field[0][2] == main_player && playing_field[0][3] == main_player)
+        return main_player;
+    else if (playing_field[1][0] == main_player && playing_field[1][1] == main_player &&
+             playing_field[1][2] == main_player && playing_field[1][3] == main_player)
+        return main_player;
+    else if (playing_field[2][0] == main_player && playing_field[2][1] == main_player &&
+             playing_field[2][2] == main_player && playing_field[3][3] == main_player)
+        return main_player;
+    else if (playing_field[4][0] == main_player && playing_field[4][1] == main_player &&
+             playing_field[4][2] == main_player && playing_field[4][3] == main_player)
+        return main_player;
     // Gamingen Player Y
-    else if (playing_field[0][0] == player02 && playing_field[0][1] == player02 && playing_field[0][2] == player02 &&
-             playing_field[0][3] == player02)
-        return player02;
-    else if (playing_field[1][0] == player02 && playing_field[1][1] == player02 && playing_field[1][2] == player02 &&
-             playing_field[1][3] == player02)
-        return player02;
-    else if (playing_field[2][0] == player02 && playing_field[2][1] == player02 && playing_field[2][2] == player02 &&
-             playing_field[3][3] == player02)
-        return player02;
-    else if (playing_field[4][0] == player02 && playing_field[4][1] == player02 && playing_field[4][2] == player02 &&
-             playing_field[4][3] == player02)
-        return player02;
+    else if (playing_field[0][0] == other_player && playing_field[0][1] == other_player &&
+             playing_field[0][2] == other_player && playing_field[0][3] == other_player)
+        return other_player;
+    else if (playing_field[1][0] == other_player && playing_field[1][1] == other_player &&
+             playing_field[1][2] == other_player && playing_field[1][3] == other_player)
+        return other_player;
+    else if (playing_field[2][0] == other_player && playing_field[2][1] == other_player &&
+             playing_field[2][2] == other_player && playing_field[3][3] == other_player)
+        return other_player;
+    else if (playing_field[4][0] == other_player && playing_field[4][1] == other_player &&
+             playing_field[4][2] == other_player && playing_field[4][3] == other_player)
+        return other_player;
     else
         return '/';
 }
 
 void SwitchPlayer()
 {
-    if (player01 == 'X')
+    if (main_player == 'X')
     {
-        player01 = 'Y';
-        player02 = 'X';
+        main_player = 'Y';
+        other_player = 'X';
     }
     else
     {
-        player01 = 'X';
-        player02 = 'Y';
+        main_player = 'X';
+        other_player = 'Y';
     }
 }
 
@@ -70,58 +70,138 @@ void DrawField()
 
 void DrawMove()
 {
-    cout << "Bitte wähle ein Feld aus [Player: " << player01 << "]: ";
+    cout << "Bitte wähle ein Feld aus [Player: " << main_player << "]: ";
     cin >> get_pos;
     switch (get_pos)
     {
     case 'a':
-        playing_field[0][0] = player01;
-        break;
+        if (playing_field[0][0] == other_player)
+            break;
+        else
+        {
+            playing_field[0][0] = main_player;
+            break;
+        }
     case 'b':
-        playing_field[0][1] = player01;
-        break;
+        if (playing_field[0][1] == other_player)
+            break;
+        else
+        {
+            playing_field[0][1] = main_player;
+            break;
+        }
     case 'c':
-        playing_field[0][2] = player01;
-        break;
+        if (playing_field[0][2] == other_player)
+            break;
+        else
+        {
+            playing_field[0][2] = main_player;
+            break;
+        }
     case 'd':
-        playing_field[0][3] = player01;
-        break;
+        if (playing_field[0][3] == other_player)
+            break;
+        else
+        {
+            playing_field[0][3] = main_player;
+            break;
+        }
     case 'e':
-        playing_field[1][0] = player01;
-        break;
+        if (playing_field[1][0] == other_player)
+            break;
+        else
+        {
+            playing_field[1][0] = main_player;
+            break;
+        }
     case 'f':
-        playing_field[1][1] = player01;
-        break;
+        if (playing_field[1][1] == other_player)
+            break;
+        else
+        {
+            playing_field[1][1] = main_player;
+            break;
+        }
     case 'g':
-        playing_field[1][2] = player01;
-        break;
+        if (playing_field[1][2] == other_player)
+            break;
+        else
+        {
+            playing_field[1][2] = main_player;
+            break;
+        }
     case 'h':
-        playing_field[1][3] = player01;
-        break;
+        if (playing_field[1][3] == other_player)
+            break;
+        else
+        {
+            playing_field[1][3] = main_player;
+            break;
+        }
     case 'i':
-        playing_field[2][0] = player01;
-        break;
+        if (playing_field[2][0] == other_player)
+            break;
+        else
+        {
+            playing_field[2][0] = main_player;
+            break;
+        }
     case 'j':
-        playing_field[2][1] = player01;
-        break;
+        if (playing_field[2][1] == other_player)
+            break;
+        else
+        {
+            playing_field[2][1] = main_player;
+            break;
+        }
     case 'k':
-        playing_field[2][2] = player01;
-        break;
+        if (playing_field[2][2] == other_player)
+            break;
+        else
+        {
+            playing_field[2][2] = main_player;
+            break;
+        }
     case 'l':
-        playing_field[2][3] = player01;
-        break;
+        if (playing_field[2][3] == other_player)
+            break;
+        else
+        {
+            playing_field[2][3] = main_player;
+            break;
+        }
     case 'm':
-        playing_field[3][0] = player01;
-        break;
+        if (playing_field[3][0] == other_player)
+            break;
+        else
+        {
+            playing_field[3][0] = main_player;
+            break;
+        }
     case 'n':
-        playing_field[3][1] = player01;
-        break;
+        if (playing_field[3][1] == other_player)
+            break;
+        else
+        {
+            playing_field[3][1] = main_player;
+            break;
+        }
     case 'o':
-        playing_field[3][2] = player01;
-        break;
+        if (playing_field[3][2] == other_player)
+            break;
+        else
+        {
+            playing_field[3][2] = main_player;
+            break;
+        }
     case 'p':
-        playing_field[3][3] = player01;
-        break;
+        if (playing_field[3][3] == other_player)
+            break;
+        else
+        {
+            playing_field[3][3] = main_player;
+            break;
+        }
     }
 }
 
