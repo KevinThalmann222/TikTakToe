@@ -1,14 +1,17 @@
 #include <iostream>
 #include <windows.h>
 using namespace std;
-
-// Spielfeld mit der groeße 4x4
+// Spielfeld mit der groeße 3x3
 char playing_field[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 char get_pos;
 char main_player = 'X';
 char other_player = 'Y';
 bool used_field = false;
 int num_rounds = 0;
+const char color;
+#define BOLDBLUE "\033[1m\033[34m"
+#define BOLDGREEN "\033[1m\033[32m"
+#define RESET "\033[0m"
 
 char WinningPlayer()
 {
@@ -79,13 +82,13 @@ void DrawMove()
 {
     if (used_field == true)
     {
-        cout << "-> Das Feld ist besetzt! [Player " << main_player << "]: ";
+        cout << "-> Das Feld ist besetzt! [Player " << BOLDGREEN << main_player << RESET << "]: ";
         cin >> get_pos;
         used_field = false;
     }
     else
     {
-        cout << "Bitte wähle ein Feld aus [Player " << main_player << "]: ";
+        cout << "Bitte wähle ein Feld aus [Player " << BOLDGREEN << main_player << RESET << "]: ";
         cin >> get_pos;
     }
     switch (get_pos)
